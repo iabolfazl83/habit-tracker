@@ -3,6 +3,7 @@ import type {Habit} from "../types/habits";
 
 export function useHabits() {
     const [habits, setHabits] = useLocalStorage<Habit[]>("habits", []);
+    const activeHabits = habits.filter(h => !h.isArchived);
 
     const addHabit = (name: string): void => {
         const newHabit: Habit = {
@@ -35,12 +36,13 @@ export function useHabits() {
 
     const deleteHabit = (id: string): void => {
         setHabits(
-            prevHabits => prevHabits.map(habit => habit.id !== id ? {...habit, isArchived: true} : habit)
+            prevHabits => prevHabits.map(habit => habit.id === id ? {...habit, isArchived: true} : habit)
         );
     }
 
     return {
         habits,
+        activeHabits,
         addHabit,
         completeHabit,
         deleteHabit,
