@@ -6,13 +6,19 @@ import {Header} from "./components/Header.tsx";
 function App() {
     const {addHabit, activeHabits, completeHabit, deleteHabit} = useHabits();
 
-    return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
-            <Header/>
-            <AddHabitForm onAddHabit={addHabit}/>
-            <HabitList habits={activeHabits} onComplete={completeHabit} onDelete={deleteHabit}/>
-        </div>
-    )
+  return (
+    <div className="transition-colors duration-200 bg-claude-bg dark:bg-claude-bg-dark p-4">
+      <div className="flex flex-col items-center max-w-md mx-auto w-full min-h-screen">
+        <Header />
+        <AddHabitForm onAddHabit={addHabit} />
+        <HabitList
+          habits={activeHabits}
+          onComplete={completeHabit}
+          onDelete={deleteHabit}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
