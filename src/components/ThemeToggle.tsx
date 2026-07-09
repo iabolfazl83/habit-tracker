@@ -8,26 +8,25 @@ type ThemeOption = {
 
 const OPTIONS: ThemeOption[] = [
     {value: "light", label: "Light", icon: "☀"},
-    {value: "dark", label: "Dark", icon: "⬛"},
-    {value: "system", label: "System", icon: "◑"},
+    {value: "dark", label: "Dark", icon: "🌙"},
+    {value: "system", label: "System", icon: "🖥"},
 ];
 
 export function ThemeToggle() {
     const {theme, setTheme} = useTheme();
 
     return (
-        <div className="theme-toggle" role="group" aria-label="Theme">
+        <div className="flex gap-2" aria-label="Theme">
             {OPTIONS.map((option) => (
                 <button
                     key={option.value}
-                    className={`theme-btn ${theme === option.value ? "active" : ""}`}
+                    className={`p-1 flex justify-center items-center h-10 w-10 border-2 rounded-full border-claude-border dark:border-claude-border-dark bg-claude-input dark:bg-claude-input-dark hover:dark:bg-claude-bg-dark hover:bg-claude-border dark:text-claude-text-dark hover:cursor-pointer duration-200 ${theme === option.value ? "" : ""}`}
                     onClick={() => setTheme(option.value)}
                     aria-pressed={theme === option.value}
                     aria-label={option.label}
                     type="button"
                 >
                     <span aria-hidden="true">{option.icon}</span>
-                    <span>{option.label}</span>
                 </button>
             ))}
         </div>

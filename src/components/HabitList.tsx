@@ -9,7 +9,7 @@ interface HabitListProps {
 
 export function HabitList({habits, onComplete, onDelete}: HabitListProps) {
     if (habits.length === 0) {
-        return <p className="">No habits yet. Add one above.</p>;
+        return <p className="flex-1 text-claude-text dark:text-claude-text-dark flex items-center justify-center w-full">No habits yet. Add one above.</p>;
     }
 
     return (
