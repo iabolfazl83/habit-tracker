@@ -1,13 +1,14 @@
 @import "tailwindcss";
+
 @variant dark (&:where(.dark, .dark *));
 @theme {
-    --color-claude-bg: #F5F4EF;
-    --color-claude-bg-dark: #262624;
-    --color-claude-input: #FFFFFF;
-    --color-claude-input-dark: #30302E;
-    --color-claude-border: #E5E4DF;
-    --color-claude-border-dark: #3A3937;
-    --color-claude-text-dark: #FFFFFF;
-    --color-claude-text: #0b0b0b;
-    --color-claude-mute-text: #97958C;
+  --color-claude-bg: #F5F4EF;
+  --color-claude-bg-dark: #262624;
+  --color-claude-input: #FFFFFF;
+  --color-claude-input-dark: #30302E;
+  --color-claude-border: #E5E4DF;
+  --color-claude-border-dark: #3A3937;
+  --color-claude-text-dark: #FFFFFF;
+  --color-claude-text: #0b0b0b;
+  --color-claude-mute-text: #97958C;
 }
