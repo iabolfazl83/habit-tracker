@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html, body, #root {
+  height: 100%;
+}
+
 @variant dark (&:where(.dark, .dark *));
 @theme {
   --color-claude-bg: #F5F4EF;
@@ -11,4 +15,23 @@
   --color-claude-text-dark: #FFFFFF;
   --color-claude-text: #0b0b0b;
   --color-claude-mute-text: #97958C;
+}
+
+body {
+  @apply bg-claude-bg dark:bg-claude-bg-dark transition-colors duration-200;
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.15s ease-out forwards;
 }
