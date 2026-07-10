@@ -7,8 +7,8 @@ function App() {
     const {addHabit, activeHabits, completeHabit, deleteHabit} = useHabits();
 
     return (
-        <div className="transition-colors duration-200 bg-claude-bg dark:bg-claude-bg-dark p-4">
-            <div className="flex flex-col items-center max-w-md mx-auto w-full min-h-screen">
+        <div className="h-full transition-colors duration-200 bg-claude-bg dark:bg-claude-bg-dark p-4">
+            <div className="flex flex-col items-center max-w-md mx-auto w-full h-full">
                 <Header/>
                 <AddHabitForm onAddHabit={addHabit}/>
                 <HabitList
