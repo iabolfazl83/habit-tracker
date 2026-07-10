@@ -1,5 +1,6 @@
 import type {Habit} from "../types/habits.ts";
 import {HabitItem} from "./HabitItem.tsx";
+import {EmptyState} from "./EmptyState.tsx";
 
 interface HabitListProps {
     habits: Habit[];
@@ -9,16 +10,17 @@ interface HabitListProps {
 
 export function HabitList({habits, onComplete, onDelete}: HabitListProps) {
     if (habits.length === 0) {
-        return <p
-            className="flex-1 text-claude-text dark:text-claude-text-dark flex items-center justify-center w-full">No
-            habits yet. Add one above.</p>;
+        return (<EmptyState/>);
     }
 
     return (
-        <ul>
-            {habits.map((habit) => (
-                <HabitItem key={habit.id} habit={habit} onComplete={onComplete} onDelete={onDelete}/>
-            ))}
-        </ul>
+        <>
+            <p className="text-claude-mute-text mt-4 mb-2 text-sm font-bold text-left w-full">TODAY</p>
+            <ul className="flex flex-col w-full overflow-y-auto scrollbar-none [&::-webkit-scrollbar]:hidden flex-1 min-h-0 scroll">
+                {habits.map((habit) => (
+                    <HabitItem key={habit.id} habit={habit} onComplete={onComplete} onDelete={onDelete}/>
+                ))}
+            </ul>
+        </>
     );
 }
