@@ -30,14 +30,15 @@ export function AddHabitForm({onAddHabit}: AddHabitFormProps) {
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
-            <div className="w-full flex mt-8 mb-2 items-center gap-2 justify-between text-center bg-claude-input
+            <div className={`w-full flex mt-8 mb-2 items-center gap-2 justify-between text-center bg-claude-input
               dark:bg-claude-input-dark p-2 px-4 text-claude-text dark:text-claude-text-dark rounded-2xl border
-               border-claude-border dark:border-claude-border-dark">
+               ${error ? "border-red-400" : "border-claude-border dark:border-claude-border-dark hover:border-stone-400 dark:hover:border-stone-600"} duration-200`}>
                 <input
                     ref={input}
-                    className="focus:outline-0 w-full wrap-break-word"
+                    className="focus:outline-0 w-full wrap-break-word text-claude-text dark:text-claude-text-dark"
                     type="text" placeholder="Add New Habit..." value={name}
                     onChange={handleChange}
+                    onBlur={() => setError("")}
                 />
                 <Button className="py-2 px-4 rounded-xl">
                     <span>+</span>
