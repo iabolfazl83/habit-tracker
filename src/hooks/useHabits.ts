@@ -40,11 +40,18 @@ export function useHabits() {
         );
     }
 
+    const editHabit = (name: string, id: string): void => {
+        setHabits(
+            prevHabits => prevHabits.map(habit => habit.id === id ? {...habit, name} : habit)
+        );
+    }
+
     return {
         habits,
         activeHabits,
         addHabit,
         completeHabit,
         deleteHabit,
+        editHabit,
     }
 }
