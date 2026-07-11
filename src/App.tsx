@@ -4,7 +4,7 @@ import {HabitList} from "./components/HabitList.tsx";
 import {Header} from "./components/Header.tsx";
 
 function App() {
-    const {addHabit, activeHabits, completeHabit, deleteHabit} = useHabits();
+    const {addHabit, activeHabits, completeHabit, deleteHabit, editHabit} = useHabits();
 
     return (
         <div className="h-full transition-colors duration-200 bg-claude-bg dark:bg-claude-bg-dark p-4">
@@ -15,6 +15,7 @@ function App() {
                     habits={activeHabits}
                     onComplete={completeHabit}
                     onDelete={deleteHabit}
+                    onEdit={editHabit}
                 />
             </div>
         </div>
