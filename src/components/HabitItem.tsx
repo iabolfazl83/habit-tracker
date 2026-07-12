@@ -7,7 +7,7 @@ interface HabitItemProps {
     habit: Habit;
     onComplete: (id: string) => void;
     onDelete: (id: string) => void;
-    onEdit: (name: string, id: string) => void;
+    onEdit: (id: string, name: string) => void;
 }
 
 
@@ -44,7 +44,7 @@ export function HabitItem({habit, onComplete, onDelete, onEdit}: HabitItemProps)
             return;
         }
 
-        onEdit(trimmedName, habit.id);
+        onEdit(habit.id, trimmedName);
         setIsEditing(false);
         setError(false);
         inputRef.current?.blur();

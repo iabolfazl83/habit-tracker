@@ -40,7 +40,7 @@ export function useHabits() {
         );
     }
 
-    const editHabit = (name: string, id: string): void => {
+    const editHabit = (id: string, name: string): void => {
         setHabits(
             prevHabits => prevHabits.map(habit => habit.id === id ? {...habit, name} : habit)
         );

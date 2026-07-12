@@ -6,7 +6,7 @@ interface HabitListProps {
     habits: Habit[];
     onComplete: (id: string) => void;
     onDelete: (id: string) => void;
-    onEdit: (name: string, id: string) => void;
+    onEdit: (id: string, name: string) => void;
 }
 
 export function HabitList({habits, onComplete, onDelete, onEdit}: HabitListProps) {
