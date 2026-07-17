@@ -1,7 +1,7 @@
 import type {Habit} from "../types/habits.ts";
 import {Checkbox} from "./Checkbox.tsx";
 import {IconPencil, IconTrash} from "@tabler/icons-react";
-import {type ChangeEvent, type MouseEvent, type SubmitEvent, useEffect, useRef, useState} from "react";
+import {type ChangeEvent, type MouseEvent, type SubmitEvent, useRef, useState} from "react";
 import {playDing} from "../utils/sound.ts";
 import {triggerConfetti} from "../utils/confetti.ts";
 
@@ -22,12 +22,6 @@ export function HabitItem({habit, onComplete, onDelete, onEdit}: HabitItemProps)
     const inputRef = useRef<HTMLInputElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
     const [error, setError] = useState(false);
-
-    useEffect(() => {
-        if (!isEditing) {
-            setHabitName(habit.name);
-        }
-    }, [habit.name, isEditing]);
 
     const handleEditClick = () => {
         if (!isEditing) {
