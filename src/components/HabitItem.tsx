@@ -1,7 +1,9 @@
 import type {Habit} from "../types/habits.ts";
 import {Checkbox} from "./Checkbox.tsx";
 import {IconPencil, IconTrash} from "@tabler/icons-react";
-import {type ChangeEvent, type SubmitEvent, useEffect, useRef, useState} from "react";
+import {type ChangeEvent, type MouseEvent, type SubmitEvent, useEffect, useRef, useState} from "react";
+import {playDing} from "../utils/sound.ts";
+import {triggerConfetti} from "../utils/confetti.ts";
 
 interface HabitItemProps {
     habit: Habit;
@@ -22,7 +24,9 @@ export function HabitItem({habit, onComplete, onDelete, onEdit}: HabitItemProps)
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (!isEditing) setHabitName(habit.name);
+        if (!isEditing) {
+            setHabitName(habit.name);
+        }
     }, [habit.name, isEditing]);
 
     const handleEditClick = () => {
@@ -54,13 +58,22 @@ export function HabitItem({habit, onComplete, onDelete, onEdit}: HabitItemProps)
         inputRef.current?.blur();
     };
 
+    const handleComplete = (e: MouseEvent<HTMLButtonElement>) => {
+        if (!isCompletedToday) {
+            triggerConfetti(e.clientX, e.clientY);
+            playDing();
+        }
+
+        onComplete(habit.id);
+    };
+
     return (
         <li className={`${isCompletedToday ? "opacity-50" : ""} flex gap-2 justify-between items-center group px-6 py-4 my-2 bg-claude-input border-claude-border hover:border-stone-400 dark:bg-claude-input-dark rounded-2xl border dark:border-claude-border-dark hover:dark:border-stone-600 text-claude-text dark:text-claude-text-dark duration-200`}>
             <div className="flex gap-4 items-center flex-1">
                 {!isEditing && (
                     <Checkbox
                         checked={isCompletedToday}
-                        onChange={() => onComplete(habit.id)}
+                        onChange={handleComplete}
                         label={`Mark ${habit.name} as ${isCompletedToday ? "incomplete" : "complete"}`}
                     />
                 )}
