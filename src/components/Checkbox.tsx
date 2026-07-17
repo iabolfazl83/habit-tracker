@@ -1,22 +1,14 @@
-import type {MouseEvent} from "react";
-import {triggerConfetti} from "../utils/confetti";
-import {playDing} from "../utils/sound";
+import {type MouseEvent} from "react";
+
 
 interface CheckboxProps {
     checked: boolean;
-    onChange: () => void;
+    onChange: (e: MouseEvent<HTMLButtonElement>) => void;
     label: string;
+
 }
 
 export function Checkbox({checked, onChange, label}: CheckboxProps) {
-
-    function handleClick(e: MouseEvent<HTMLButtonElement>) {
-        if (!checked) {
-            triggerConfetti(e.clientX, e.clientY);
-            playDing();
-        }
-        onChange();
-    }
 
     return (
         <button
@@ -24,7 +16,7 @@ export function Checkbox({checked, onChange, label}: CheckboxProps) {
             role="checkbox"
             aria-checked={checked}
             aria-label={label}
-            onClick={handleClick}
+            onClick={onChange}
             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center
                   shrink-0 transition-all duration-300 cursor-pointer
                   ${checked
